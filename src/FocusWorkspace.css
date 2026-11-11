@@ -1,0 +1,171 @@
+/* Focus: tasks, schedules and the timer scene. */
+.fw-workspace.kd-page { gap: 14px; }
+.fw-workspace-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.fw-task-search { position: relative; display: flex; align-items: center; margin-left: auto; }
+.fw-task-search svg { position: absolute; left: 10px; width: 14px; height: 14px; fill: none; stroke: var(--kd-faint); stroke-width: 2; pointer-events: none; }
+.fw-task-search input { width: 220px; background-image: none; }
+
+.fw-resume-banner {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; border-radius: var(--kd-radius); text-align: left;
+  background: linear-gradient(100deg, var(--kd-accent-soft), var(--kd-accent-softer)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--kd-accent) 22%, transparent);
+  transition: background var(--kd-fast);
+}
+.fw-resume-banner:hover { background: color-mix(in srgb, var(--kd-accent) 16%, transparent); }
+.fw-resume-banner > span:nth-child(2) { flex: 1; display: grid; gap: 1px; }
+.fw-resume-banner b { font-weight: 600; }
+.fw-resume-banner small { color: var(--kd-muted); }
+.fw-resume-banner strong { display: inline-flex; align-items: center; gap: 2px; color: var(--kd-accent-ink); font-weight: 600; }
+.fw-status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--kd-accent); box-shadow: 0 0 0 4px var(--kd-accent-soft); animation: kd-pulse 2s ease-in-out infinite; }
+
+/* ---------- Task cards ---------- */
+.fw-task-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 14px; }
+.fw-task-list article {
+  position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: 10px; min-height: 164px; padding: 16px 16px 14px;
+  border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card);
+  transition: transform var(--kd-medium) var(--kd-ease), box-shadow var(--kd-medium) var(--kd-ease);
+}
+.fw-task-list article:hover { transform: translateY(-2px); box-shadow: var(--kd-shadow-card), 0 8px 24px var(--kd-shadow); }
+.fw-task-list article > header { display: flex; align-items: flex-start; gap: 8px; }
+.fw-task-list h2 { flex: 1; min-width: 0; font-size: 14.5px; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+.fw-task-list article > header > div { display: flex; gap: 2px; opacity: 0; transition: opacity var(--kd-fast); }
+.fw-task-list article:hover > header > div, .fw-task-list article:focus-within > header > div { opacity: 1; }
+.fw-edit-task, .fw-delete-task { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; color: var(--kd-muted); }
+.fw-edit-task:hover { background: var(--kd-hover); color: var(--kd-ink); }
+.fw-delete-task:hover { background: color-mix(in srgb, var(--kd-danger) 10%, transparent); color: var(--kd-danger); }
+.fw-task-list article > p { display: flex; align-items: baseline; gap: 6px; color: var(--kd-muted); font-size: 13px; }
+.fw-task-list article > p > b { font: 650 30px/1 var(--kd-numeric); letter-spacing: -.03em; color: var(--kd-ink); font-variant-numeric: tabular-nums; }
+.fw-task-list article > p > b.fw-countup-label { font: 600 17px/1.4 var(--kd-font); letter-spacing: 0; }
+.fw-task-list article > p > span { margin-left: 4px; padding: 2px 7px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--kd-warning); background: color-mix(in srgb, var(--kd-warning-fill) 13%, transparent); }
+.fw-task-list article > footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.fw-task-list article > footer small { color: var(--kd-muted); font-size: 11.5px; }
+.fw-start { min-width: 72px; border-radius: 20px !important; }
+
+.fw-empty { border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card); }
+.fw-empty h2 { font-size: 16px; color: var(--kd-ink); font-weight: 650; }
+.fw-empty p { max-width: 40ch; }
+.fw-empty-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--kd-accent-soft); color: var(--kd-accent-ink); }
+.fw-empty-tasks { padding: 56px 24px; }
+
+/* ---------- Schedule ---------- */
+.fw-schedules { display: grid; gap: 14px; }
+.fw-schedules > header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fw-schedules > header input[type="date"] { width: 150px; }
+.fw-schedules > header > div { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.fw-schedules > ul { display: grid; border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card); overflow: hidden; }
+.fw-schedules > ul > li { display: grid; grid-template-columns: 92px minmax(0, 1fr) auto auto; align-items: center; gap: 16px; padding: 14px 18px; border-top: 1px solid var(--kd-line); position: relative; }
+.fw-schedules > ul > li:first-child { border-top: 0; }
+.fw-schedules > ul > li::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 3px; border-radius: 0 3px 3px 0; background: var(--kd-accent); }
+.fw-schedules > ul > li.fw-schedule-off::before { background: var(--kd-track); }
+.fw-schedule-off .fw-schedule-copy, .fw-schedule-off .fw-schedule-time { opacity: .5; }
+.fw-schedule-time { display: grid; gap: 1px; }
+.fw-schedule-time time { font: 650 18px/1.1 var(--kd-numeric); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.fw-schedule-time small { color: var(--kd-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.fw-schedule-copy h3 { font-size: 13.5px; font-weight: 600; }
+.fw-schedule-copy p { font-size: 12px; color: var(--kd-muted); margin-top: 2px; }
+.fw-schedule-status { padding: 3px 9px; border-radius: 20px; font-size: 11.5px; font-weight: 500; color: var(--kd-muted); background: var(--kd-soft); }
+.fw-schedule-status.is-enabled { color: var(--kd-success); background: color-mix(in srgb, var(--kd-success-fill) 13%, transparent); }
+.fw-row-actions { display: flex; align-items: center; gap: 6px; }
+.fw-row-actions > button { min-height: 26px; padding: 0 10px; font-size: 12px; }
+.fw-row-actions .switch { margin-left: 6px; }
+.fw-empty-schedule { padding: 44px; }
+
+/* ---------- Dialog content ---------- */
+.fw-modal { max-width: min(480px, calc(100vw - 48px)); }
+.fw-modal-wide { max-width: min(680px, calc(100vw - 48px)); }
+.fw-modal > :not(header):not(form) { margin-left: 22px; margin-right: 22px; }
+.fw-modal > footer { padding-bottom: 20px; }
+.fw-modal > :not(header):not(form) + :not(footer) { margin-top: 14px; }
+.fw-modal textarea { min-height: 200px; font-family: var(--kd-font-mono); font-size: 12px; width: 100%; }
+.fw-field-note { font-size: 12px; color: var(--kd-muted); line-height: 1.5; }
+.fw-presets { display: flex; gap: 8px; }
+.fw-presets button[aria-pressed="true"], .fw-style-options button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--kd-accent); color: var(--kd-accent-ink); }
+.fw-check { display: flex !important; align-items: center; gap: 8px; color: var(--kd-ink) !important; font-size: 13px !important; }
+.fw-style-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fw-style-options button { --fw-digit-size: 26px; min-height: 96px; flex-direction: column; gap: 10px; padding: 14px 8px; color: var(--kd-ink); }
+.fw-style-options button span:last-child { font-size: 12px; color: var(--kd-muted); }
+.fw-style-options .fw-digits-flip { gap: 3px; }
+.fw-style-options .fw-flip-part { padding: 4px 3px; }
+.fw-whitelist-add { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; margin-top: 10px; }
+.fw-whitelist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; max-height: 340px; overflow: auto; padding: 4px 2px; }
+.fw-whitelist-grid li { position: relative; }
+.fw-launch-app { display: grid; justify-items: center; gap: 8px; width: 100%; padding: 16px 8px 12px; border-radius: 12px; background: var(--kd-surface-sunken); text-align: center; transition: background var(--kd-fast); }
+html[data-color-mode="dark"] .fw-launch-app { background: color-mix(in srgb, var(--kd-ink) 5%, transparent); }
+.fw-launch-app:hover:not(:disabled) { background: var(--kd-accent-soft); }
+.fw-launch-app .application-icon { width: 40px; height: 40px; border-radius: 10px; }
+.fw-launch-app b { font-size: 12px; font-weight: 500; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fw-launch-app small { color: var(--kd-warning); font-size: 11px; }
+.fw-remove { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--kd-surface-raised); color: var(--kd-muted); box-shadow: 0 0 0 .5px var(--kd-line-strong); opacity: 0; transition: opacity var(--kd-fast); }
+.fw-whitelist-grid li:hover .fw-remove, .fw-remove:focus-visible { opacity: 1; }
+.fw-remove:hover { color: var(--kd-danger); }
+.fw-import-preview { display: grid; gap: 8px; padding: 12px; border-radius: 12px; background: var(--kd-surface-sunken); }
+.fw-import-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 9px; background: var(--kd-surface); }
+.fw-import-row > span { flex: 1; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; min-width: 0; }
+.fw-import-row time { font-weight: 650; font-variant-numeric: tabular-nums; }
+.fw-import-row small { grid-column: 2; color: var(--kd-muted); }
+.fw-modal details { border-radius: 10px; background: var(--kd-surface-sunken); padding: 10px 12px; display: grid; gap: 8px; }
+.fw-modal details > summary { font-weight: 500; color: var(--kd-accent-ink); }
+.fw-modal details ul { display: grid; gap: 2px; font-size: 12px; }
+
+/* ---------- Timer scene ---------- */
+.fw-timer-workspace { height: 100%; }
+.fw-timer-scene {
+  --fw-scene: var(--kd-focus-bg); --fw-ink: var(--kd-ink); --fw-soft: var(--kd-muted); --fw-ring: var(--kd-accent);
+  position: relative; min-height: 100%; height: 100%; padding: 22px 28px 26px;
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--fw-ring) 10%, transparent), transparent 60%), var(--fw-scene);
+  color: var(--fw-ink); transition: background var(--kd-medium);
+}
+.fw-timer-scene.fw-rest { --fw-scene: var(--kd-rest-bg); --fw-ring: var(--kd-success-fill); }
+.fw-timer-scene.fw-away { --fw-scene: var(--kd-away-bg); --fw-ring: var(--kd-warning-fill); }
+.fw-timer-scene > header { display: flex; justify-content: space-between; align-items: center; }
+.fw-timer-scene > header button { display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 8px; color: var(--fw-soft); font-size: 12.5px; font-weight: 500; }
+.fw-timer-scene > header button:hover { background: color-mix(in srgb, var(--fw-ink) 7%, transparent); color: var(--fw-ink); }
+.fw-timer-center { --fw-clock-size: 330px; --fw-digit-size: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; padding: 8px 0 20px; }
+.fw-size-small { --fw-digit-size: 52px; }
+.fw-size-large { --fw-digit-size: 80px; }
+.fw-clock-ring { position: relative; width: var(--fw-clock-size); max-width: 90%; aspect-ratio: 1; flex-shrink: 0; }
+.fw-clock-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); fill: none; stroke-width: 7; }
+.fw-ring-track { stroke: color-mix(in srgb, var(--fw-ink) 9%, transparent); }
+.fw-ring-progress { stroke: var(--fw-ring); stroke-linecap: round; transition: stroke-dashoffset 1s linear; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--fw-ring) 35%, transparent)); }
+.fw-clock-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.fw-clock-label { color: var(--fw-soft); font-size: 12px; font-weight: 600; letter-spacing: .12em; }
+.fw-clock-face > small { font-size: 12px; color: var(--fw-soft); font-variant-numeric: tabular-nums; }
+.fw-digits { font: 300 var(--fw-digit-size, 30px)/1 var(--kd-font-display); font-variant-numeric: tabular-nums; letter-spacing: -.03em; white-space: nowrap; }
+.fw-digits-normal { font-weight: 250; }
+.fw-digits-digital { display: flex; gap: 3px; height: .82em; }
+.fw-digits-digital svg { width: .43em; height: .82em; fill: currentColor; }
+.fw-digits-digital svg.fw-digit-colon { width: .16em; }
+.fw-digits-flip { display: flex; gap: 6px; font-size: calc(var(--fw-digit-size, 30px) * .8); font-weight: 600; letter-spacing: -.02em; }
+.fw-flip-part { position: relative; padding: 12px 9px 9px; border-radius: 8px; background: color-mix(in srgb, var(--fw-ink, var(--kd-ink)) 8%, transparent); }
+.fw-flip-part::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: color-mix(in srgb, var(--fw-scene, var(--kd-surface)) 80%, transparent); }
+.fw-timer-center > h1 { margin-top: 14px; font: 650 22px/1.25 var(--kd-font-display); letter-spacing: -.015em; text-align: center; max-width: 80%; }
+.fw-timer-center > p { margin-top: 4px; font-size: 12.5px; color: var(--fw-soft); }
+.fw-timer-controls { display: grid; justify-items: center; gap: 10px; }
+.fw-timer-primary { display: flex; align-items: center; gap: 10px; }
+.fw-timer-primary button {
+  min-width: 112px; height: 40px; padding: 0 20px; border-radius: 20px; font-size: 13.5px; font-weight: 600;
+  color: var(--fw-ink); background: color-mix(in srgb, var(--fw-ink) 8%, transparent); transition: background var(--kd-fast), transform var(--kd-fast);
+}
+.fw-timer-primary button:hover:not(:disabled) { background: color-mix(in srgb, var(--fw-ink) 13%, transparent); }
+.fw-timer-primary button:active:not(:disabled) { transform: scale(.97); }
+.fw-timer-primary .fw-main-control { background: var(--fw-ring); color: #fff; box-shadow: 0 4px 14px color-mix(in srgb, var(--fw-ring) 35%, transparent); }
+.fw-timer-primary .fw-main-control:hover:not(:disabled) { background: color-mix(in srgb, var(--fw-ring) 88%, #000); }
+.fw-timer-primary button:disabled { opacity: .45; }
+.fw-pause-available { min-height: 16px; color: var(--fw-soft); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.fw-timer-tools { display: flex; gap: 4px; }
+.fw-timer-tools button { padding: 5px 12px; border-radius: 8px; color: var(--fw-soft); font-size: 12px; }
+.fw-timer-tools button:hover { background: color-mix(in srgb, var(--fw-ink) 7%, transparent); color: var(--fw-ink); }
+
+.fw-timer-scene.fw-immersed { display: grid; place-items: center; background: #050506; --fw-scene: #050506; --fw-ink: #e8e8ed; --fw-soft: #8e8e93; color: #e8e8ed; }
+.fw-immersed .fw-timer-center { width: 100%; padding: 0; --fw-digit-size: clamp(70px, 13vw, 150px); }
+.fw-immersed .fw-clock-ring svg, .fw-immersed .fw-clock-label, .fw-immersed .fw-timer-center > h1, .fw-immersed .fw-timer-center > p, .fw-immersed .fw-clock-face > small { display: none; }
+.fw-immersed .fw-clock-ring { width: auto; max-width: none; aspect-ratio: auto; }
+.fw-immersed .fw-clock-face { position: static; }
+.fw-immersed .fw-flip-part { padding: 20px 18px 15px; background: #1c1c1f; border-radius: 14px; }
+.fw-immersed .fw-digits-flip { gap: 14px; }
+
+@media (max-height: 720px) {
+  .fw-timer-center { --fw-clock-size: 260px; --fw-digit-size: 54px; padding: 4px 0 12px; }
+  .fw-size-small { --fw-digit-size: 44px; }
+  .fw-size-large { --fw-digit-size: 64px; }
+}

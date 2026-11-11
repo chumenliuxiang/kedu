@@ -1,0 +1,75 @@
+/* Focus statistics: cumulative totals, period summary, task distribution, records. */
+.fs-workspace { display: grid; gap: 14px; }
+.fs-duration { display: inline-flex; align-items: baseline; gap: 5px; font-variant-numeric: tabular-nums; }
+.fs-duration > span { display: inline-flex; align-items: baseline; gap: 2px; }
+.fs-duration b { font: 650 24px/1.1 var(--kd-numeric); letter-spacing: -.02em; }
+.fs-duration small { font-size: 12px; color: var(--kd-muted); font-weight: 500; }
+
+.fs-cumulative { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 24px; padding: 18px 20px; border-radius: var(--kd-radius-lg); background: linear-gradient(120deg, var(--kd-accent-soft), var(--kd-surface) 60%); box-shadow: var(--kd-shadow-card); }
+.fs-cumulative > h2 { font-size: 13px; font-weight: 600; color: var(--kd-muted); }
+.fs-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.fs-metrics > div { display: grid; gap: 4px; }
+.fs-metrics span { font-size: 12px; color: var(--kd-muted); font-weight: 500; }
+.fs-metrics strong { font: 650 24px/1.1 var(--kd-numeric); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.fs-metrics strong small { margin-left: 3px; font: 500 12px var(--kd-font); color: var(--kd-muted); }
+
+.fs-period-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fs-date-nav, .fs-custom-dates { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.fs-date-nav input, .fs-custom-dates input { width: 140px; }
+.fs-date-nav > button:not(:last-child) { width: 30px; padding: 0; font-size: 16px; }
+.fs-custom-dates > span { color: var(--kd-muted); }
+.fs-query-state { border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card); }
+.fs-query-state p { color: var(--kd-muted); }
+
+.fs-period-summary { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 16px 20px; border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card); }
+.fs-period-summary > div:first-child { display: grid; gap: 2px; }
+.fs-period-summary h2 { font-size: 14px; font-weight: 600; }
+.fs-period-summary p { font-size: 12px; color: var(--kd-muted); }
+.fs-period-values { display: flex; align-items: baseline; gap: 18px; }
+.fs-period-values > span { color: var(--kd-muted); font-size: 12px; }
+.fs-period-values > span b { font: 650 24px/1.1 var(--kd-numeric); color: var(--kd-ink); margin-right: 2px; }
+.fs-record-button { margin-left: auto; display: inline-flex; gap: 4px; padding: 6px 10px; border-radius: 8px; color: var(--kd-accent-ink); font-weight: 500; }
+.fs-record-button:hover { background: var(--kd-accent-softer); }
+
+.fs-distribution { display: grid; grid-template-columns: minmax(260px, .9fr) minmax(0, 1.4fr); gap: 14px; align-items: start; }
+.fs-chart-panel, .fs-task-panel { padding: 16px 20px; border-radius: var(--kd-radius-lg); background: var(--kd-surface); box-shadow: var(--kd-shadow-card); }
+.fs-chart-panel { display: grid; justify-items: center; gap: 14px; }
+.fs-chart-panel > h2, .fs-task-heading h2 { justify-self: start; font-size: 13px; font-weight: 600; }
+.fs-pie, .fs-pie-empty svg { width: 200px; height: 200px; }
+.fs-pie-empty { position: relative; display: grid; place-items: center; }
+.fs-pie-empty circle { fill: var(--kd-track); }
+.fs-pie-empty span { position: absolute; color: var(--kd-muted); font-size: 12px; }
+.fs-pie-slice { stroke: var(--kd-surface); stroke-width: 2; cursor: pointer; transition: opacity var(--kd-fast); }
+.fs-pie-slice.is-muted { opacity: .3; }
+.fs-pie-slice:focus-visible { outline: none; stroke: var(--kd-ink); }
+.fs-chart-caption { display: grid; justify-items: center; gap: 2px; }
+.fs-chart-caption span { font-size: 12px; color: var(--kd-muted); }
+.fs-chart-caption b { font: 650 17px/1.2 var(--kd-numeric); font-variant-numeric: tabular-nums; }
+.fs-task-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.fs-task-heading span { font-size: 11.5px; color: var(--kd-muted); }
+.fs-task-list { display: grid; gap: 1px; margin: 0 -8px; }
+.fs-task-list button { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto 52px; align-items: center; gap: 12px; width: 100%; padding: 8px; border-radius: 9px; text-align: left; }
+.fs-task-list button:hover { background: var(--kd-hover); }
+.fs-task-list i { width: 10px; height: 10px; border-radius: 3px; }
+.fs-task-list span { display: grid; min-width: 0; }
+.fs-task-list strong { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fs-task-list small { color: var(--kd-muted); font-size: 11.5px; }
+.fs-task-list time { font-variant-numeric: tabular-nums; font-size: 12.5px; }
+.fs-task-list b { text-align: right; font-size: 12px; font-weight: 500; color: var(--kd-muted); font-variant-numeric: tabular-nums; }
+
+.fs-records-dialog { max-width: min(760px, calc(100vw - 48px)); }
+.fs-records-dialog > header { align-items: flex-start !important; }
+.fs-records-dialog > header p { font-size: 12px; color: var(--kd-muted); margin-top: 2px; }
+.fs-records-dialog > :not(header) { margin-left: 22px; margin-right: 22px; }
+.fs-record-filters { display: flex; gap: 10px; margin-top: 10px; }
+.fs-record-filters input { width: 220px; }
+.fs-record-list { margin-top: 12px; max-height: 420px; overflow: auto; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--kd-line); }
+.fs-record-list th, .fs-record-list td { padding: 9px 12px; border-bottom: 1px solid var(--kd-line); text-align: left; vertical-align: top; font-size: 12.5px; }
+.fs-record-list thead th { position: sticky; top: 0; background: var(--kd-surface-raised); font-size: 11.5px; color: var(--kd-muted); }
+.fs-record-list tbody th { font-weight: 400; }
+.fs-record-list tbody th strong, .fs-record-list td b { display: block; font-weight: 600; }
+.fs-record-list tbody th span, .fs-record-list td small, .fs-record-list td time { display: block; color: var(--kd-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.fs-records-dialog > footer { justify-content: space-between !important; padding: 12px 0 18px; color: var(--kd-muted); font-size: 12px; }
+.fs-records-dialog > footer > div { display: flex; align-items: center; gap: 8px; }
+
+@media (max-width: 1020px) { .fs-distribution { grid-template-columns: 1fr; } .fs-cumulative { grid-template-columns: 1fr; } }

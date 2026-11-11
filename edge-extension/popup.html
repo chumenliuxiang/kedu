@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="popup.css"><title>刻度网站记录</title></head>
+<body>
+  <main>
+    <header><span class="mark" aria-hidden="true">刻</span><h1>网站记录</h1><button id="refresh" type="button">刷新</button></header>
+    <p id="status" role="status">正在检查…</p>
+    <dl><div><dt>本机连接</dt><dd id="connection">—</dd></div><div><dt>最近收到</dt><dd id="received">—</dd></div><div><dt>最近写入</dt><dd id="written">—</dd></div></dl>
+    <p id="message" class="hint"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* Design tokens. Every surface, control and chart reads from these names. */
+:root {
+  --kd-font: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  --kd-font-display: "Segoe UI Variable Display", "Segoe UI", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  --kd-font-mono: "Cascadia Mono", "Consolas", ui-monospace, monospace;
+  --kd-numeric: var(--kd-font-display);
+
+  --kd-radius-xs: 6px;
+  --kd-radius-sm: 8px;
+  --kd-radius: 12px;
+  --kd-radius-lg: 16px;
+  --kd-radius-xl: 22px;
+
+  --kd-space-1: 4px;
+  --kd-space-2: 8px;
+  --kd-space-3: 12px;
+  --kd-space-4: 16px;
+  --kd-space-5: 20px;
+  --kd-space-6: 24px;
+  --kd-space-8: 32px;
+
+  --kd-ease: cubic-bezier(.2, .8, .2, 1);
+  --kd-ease-spring: cubic-bezier(.34, 1.36, .64, 1);
+  --kd-fast: 140ms;
+  --kd-medium: 240ms;
+
+  --kd-content-max: 1240px;
+  --kd-sidebar-width: 224px;
+}
+
+/* ---------- Light ---------- */
+:root,
+html[data-color-mode="light"] {
+  color-scheme: light;
+  --kd-bg: #f5f5f7;
+  --kd-surface: #ffffff;
+  --kd-surface-raised: #ffffff;
+  --kd-surface-sunken: #f0f0f3;
+  --kd-soft: #f2f2f5;
+  --kd-hover: rgba(0, 0, 0, .045);
+  --kd-pressed: rgba(0, 0, 0, .08);
+  --kd-sidebar: rgba(234, 234, 239, .92);
+  --kd-sidebar-solid: #eaeaef;
+  --kd-ink: #1d1d1f;
+  --kd-ink-2: #3a3a3c;
+  --kd-muted: #6e6e73;
+  --kd-faint: #a1a1a6;
+  --kd-line: rgba(0, 0, 0, .085);
+  --kd-line-strong: rgba(0, 0, 0, .14);
+  --kd-input: #ffffff;
+  --kd-input-line: rgba(0, 0, 0, .14);
+  --kd-track: #e5e5ea;
+  --kd-scroll: rgba(0, 0, 0, .18);
+  --kd-idle: #d8d8de;
+  --kd-danger: #d70015;
+  --kd-danger-fill: #ff3b30;
+  --kd-warning: #b25000;
+  --kd-warning-fill: #ff9500;
+  --kd-success: #248a3d;
+  --kd-success-fill: #34c759;
+  --kd-shadow: rgba(0, 0, 0, .06);
+  --kd-shadow-card: 0 0 0 .5px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04), 0 4px 14px rgba(0, 0, 0, .035);
+  --kd-shadow-pop: 0 0 0 .5px rgba(0, 0, 0, .1), 0 12px 32px rgba(0, 0, 0, .14), 0 2px 8px rgba(0, 0, 0, .06);
+  --kd-shadow-dialog: 0 0 0 .5px rgba(0, 0, 0, .1), 0 24px 64px rgba(0, 0, 0, .2), 0 4px 14px rgba(0, 0, 0, .08);
+  --kd-backdrop: rgba(30, 30, 35, .26);
+  --kd-overlay: rgba(255, 255, 255, .72);
+  --kd-tooltip: rgba(36, 36, 40, .94);
+  --kd-tooltip-ink: #ffffff;
+  --kd-tooltip-muted: #c7c7cc;
+  --kd-chart-grid: rgba(0, 0, 0, .06);
+  --kd-chart-tick: #8e8e93;
+  --kd-chart-cursor: rgba(0, 0, 0, .18);
+  --kd-heat-0: #ececf0;
+  --kd-ui: #ffffff;
+}
+
+/* ---------- Dark ---------- */
+html[data-color-mode="dark"] {
+  color-scheme: dark;
+  --kd-bg: #161618;
+  --kd-surface: #1f1f22;
+  --kd-surface-raised: #2a2a2d;
+  --kd-surface-sunken: #19191b;
+  --kd-soft: #2a2a2e;
+  --kd-hover: rgba(255, 255, 255, .06);
+  --kd-pressed: rgba(255, 255, 255, .1);
+  --kd-sidebar: rgba(28, 28, 31, .94);
+  --kd-sidebar-solid: #1c1c1f;
+  --kd-ink: #f5f5f7;
+  --kd-ink-2: #d1d1d6;
+  --kd-muted: #a1a1a6;
+  --kd-faint: #6e6e73;
+  --kd-line: rgba(255, 255, 255, .085);
+  --kd-line-strong: rgba(255, 255, 255, .15);
+  --kd-input: #29292c;
+  --kd-input-line: rgba(255, 255, 255, .13);
+  --kd-track: #333337;
+  --kd-scroll: rgba(255, 255, 255, .2);
+  --kd-idle: #48484c;
+  --kd-danger: #ff6961;
+  --kd-danger-fill: #ff453a;
+  --kd-warning: #ffb340;
+  --kd-warning-fill: #ff9f0a;
+  --kd-success: #4cd964;
+  --kd-success-fill: #30d158;
+  --kd-shadow: rgba(0, 0, 0, .35);
+  --kd-shadow-card: 0 0 0 .5px rgba(255, 255, 255, .06), 0 1px 2px rgba(0, 0, 0, .3);
+  --kd-shadow-pop: 0 0 0 .5px rgba(255, 255, 255, .1), 0 14px 36px rgba(0, 0, 0, .5);
+  --kd-shadow-dialog: 0 0 0 .5px rgba(255, 255, 255, .1), 0 28px 70px rgba(0, 0, 0, .6);
+  --kd-backdrop: rgba(0, 0, 0, .5);
+  --kd-overlay: rgba(22, 22, 24, .78);
+  --kd-tooltip: rgba(58, 58, 62, .97);
+  --kd-tooltip-ink: #ffffff;
+  --kd-tooltip-muted: #b8b8bd;
+  --kd-chart-grid: rgba(255, 255, 255, .07);
+  --kd-chart-tick: #8e8e93;
+  --kd-chart-cursor: rgba(255, 255, 255, .25);
+  --kd-heat-0: #26262a;
+  --kd-ui: #2a2a2d;
+}
+
+/* ---------- Accents ---------- */
+html, html[data-accent="blue"] { --kd-accent: #007aff; }
+html[data-accent="indigo"] { --kd-accent: #5856d6; }
+html[data-accent="purple"] { --kd-accent: #a550d6; }
+html[data-accent="pink"] { --kd-accent: #e8366a; }
+html[data-accent="red"] { --kd-accent: #e5372d; }
+html[data-accent="orange"] { --kd-accent: #e07f00; }
+html[data-accent="green"] { --kd-accent: #2a9d48; }
+html[data-accent="teal"] { --kd-accent: #1a9bb4; }
+html[data-accent="graphite"] { --kd-accent: #6e6e73; }
+html[data-color-mode="dark"], html[data-color-mode="dark"][data-accent="blue"] { --kd-accent: #0a84ff; }
+html[data-color-mode="dark"][data-accent="indigo"] { --kd-accent: #6e6cf0; }
+html[data-color-mode="dark"][data-accent="purple"] { --kd-accent: #bf5af2; }
+html[data-color-mode="dark"][data-accent="pink"] { --kd-accent: #ff4f7b; }
+html[data-color-mode="dark"][data-accent="red"] { --kd-accent: #ff5246; }
+html[data-color-mode="dark"][data-accent="orange"] { --kd-accent: #ff9f0a; }
+html[data-color-mode="dark"][data-accent="green"] { --kd-accent: #32d158; }
+html[data-color-mode="dark"][data-accent="teal"] { --kd-accent: #40c8e0; }
+html[data-color-mode="dark"][data-accent="graphite"] { --kd-accent: #98989d; }
+
+html {
+  --kd-on-accent: #ffffff;
+  --kd-accent-hover: color-mix(in srgb, var(--kd-accent) 88%, #000);
+  --kd-accent-ink: color-mix(in srgb, var(--kd-accent) 86%, var(--kd-ink));
+  --kd-accent-soft: color-mix(in srgb, var(--kd-accent) 11%, transparent);
+  --kd-accent-softer: color-mix(in srgb, var(--kd-accent) 6%, transparent);
+  --kd-focus-ring: 0 0 0 3px color-mix(in srgb, var(--kd-accent) 32%, transparent);
+  --kd-heat-1: color-mix(in srgb, var(--kd-accent) 22%, var(--kd-heat-0));
+  --kd-heat-2: color-mix(in srgb, var(--kd-accent) 44%, var(--kd-heat-0));
+  --kd-heat-3: color-mix(in srgb, var(--kd-accent) 68%, var(--kd-heat-0));
+  --kd-heat-4: var(--kd-accent);
+
+  /* Focus timer scenes. */
+  --kd-focus-bg: color-mix(in srgb, var(--kd-accent) 9%, var(--kd-bg));
+  --kd-focus-ink: var(--kd-ink);
+  --kd-focus-muted: var(--kd-muted);
+  --kd-rest-bg: color-mix(in srgb, #34c759 11%, var(--kd-bg));
+  --kd-rest-ink: var(--kd-ink);
+  --kd-rest-muted: var(--kd-muted);
+  --kd-away-bg: color-mix(in srgb, #ff9500 11%, var(--kd-bg));
+  --kd-away-ink: var(--kd-ink);
+  --kd-away-muted: var(--kd-muted);
+  --kd-brand-bg: linear-gradient(145deg, #3a3a3c, #1d1d1f);
+  --kd-brand-ink: #ffffff;
+}
+html[data-color-mode="dark"] { --kd-brand-bg: linear-gradient(145deg, #f5f5f7, #c7c7cc); --kd-brand-ink: #1d1d1f; }
+html[data-accent="graphite"] { --kd-on-accent: #ffffff; }

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "刻度 · Edge 网站记录",
+  "version": "0.4.0",
+  "description": "在本机刻度记录前台网站和页面的使用时间，不拦截网页。",
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "刻度网站记录",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "identity.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:17361/*"
+  ]
+}
